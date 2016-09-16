@@ -26,15 +26,20 @@ for feature_idx in range(feature_shape):
 		code2idx[code] = len(code2idx)
 	
 	#feature
-	sample_feature = np.ones((sample_size, len(code_ref)), dtype = np.float32)
+	sample_feature = np.zeros((sample_size, len(code_ref)), dtype = np.float32)
 	for sample_idx, code in enumerate(sample_code):
-		sample_feature[sample_idx][code2idx[code]] = -1.
+		sample_feature[sample_idx][code2idx[code]] = 1.
 
 	#statistic
-	#for i in range(len(code_ref)):
-	#	r, p = pearsonr(sample_idx[:, 1], phenotype)
+	pearson = []
+	spearman = []
+	for i in range(len(code_ref)):
+		pr, pp = pearsonr(sample_feature[:, i], phenotype)
+		pearson.append(pr)
+		sr, sp = spearmanr(sample_feature[:, i], phenotype)
+		spearman.append(sr)
 
-	#modelling
+	'''#modelling
 	LR_model = LogisticRegression(penalty = 'l2', C = 1.0)
 	LR_model.fit(sample_feature, phenotype)
 	feature_score.append(LR_model.score(sample_feature, phenotype))
@@ -42,11 +47,14 @@ for feature_idx in range(feature_shape):
 	print feature_idx, genotype[feature_idx]
 	print '\tAccuracy:', feature_score[-1]
 	print '\tParam:', feature_param[-1]
+	'''
+	#raw_input('pause')
 
-	raw_input('pause')
+#print 'Avg Accuracy:', np.mean(feature_score)
+#print 'Top Accuracy:', np.max(feature_score)
 
-print 'Avg Accuracy:', np.mean(feature_score)
-print 'Top Accuracy:', np.max(feature_score)
+print 'pearson:', np.mean(pearson), np.max(pearson)
+print 'spearman:', np.mean(spearman), np.max(spearman)
 #save
 #with open('one_locus_modelling.result', 'w') as outfile:
 #	cPickle.dump((feature_score, feature_param), outfile)
