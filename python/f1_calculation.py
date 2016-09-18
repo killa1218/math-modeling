@@ -4,6 +4,8 @@
 #   某位点某碱基对recall = 该位点患病样本中某碱基对数量 / 所有样本该位点此碱基对数量
 #   f1 = precision * recall / (precision + recall)
 #
+# 输出: 三个 json 文件, 每个文件格式: {'位点名称如:rs2340587': {'位点第一个值如:TC': float, '位点第二个值如:TT': float, '位点第三个值如:CC': float}}
+#
 # author tyd
 #
 # 2016-9-17
@@ -64,11 +66,11 @@ if __name__ == '__main__':
             recall_dict[locus_key][basic_group_key] = basic_group_num / total_num;
             precision_dict[locus_key][basic_group_key] = basic_group_num / sample_num / 2;
 
-    file = open('locus.recall', 'w');
+    file = open('../data/generated/locus.recall.json', 'w');
     file.write(json_dump(recall_dict));
     file.close();
 
-    file = open('locus.precision', 'w');
+    file = open('../data/generated/locus.precision.json', 'w');
     file.write(json_dump(precision_dict));
     file.close();
 
@@ -78,6 +80,6 @@ if __name__ == '__main__':
         for basic_group_key in data_dict[locus_key]:
             f1_dict[locus_key][basic_group_key] = precision_dict[locus_key][basic_group_key] * recall_dict[locus_key][basic_group_key] / (precision_dict[locus_key][basic_group_key] + recall_dict[locus_key][basic_group_key]) * 2;
 
-    file = open('locus.f1', 'w');
+    file = open('../data/generated/locus.f1.json', 'w');
     file.write(json_dump(f1_dict));
     file.close();
