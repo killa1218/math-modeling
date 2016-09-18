@@ -2,6 +2,35 @@
 APEX Math Modeling Competetion
 
 ## cy
+ - 直接全数据train不好评测是否过拟合，所以建议直接5 folder cross validation
+ - 考虑10个症状每个0.1表示严重程度
+ - http://www.jianshu.com/p/45968f4d5f86
+- 基于学习模型的特征排序：
+1.统计指标
+precision/accuracy/f1
+pearson/spearman
+互信息和最大信息系数 Mutual information and maximal information coefficient (MIC)
+距离相关系数 (Distance correlation)
+2.分类模型
+LogisticsRegression
+SVM
+决策树DecisionTree
+随机森林RandomForest
+3.回归模型
+LinearRegression
+Lasso（L1）/ Ridge（L2）
+决策树DecisionTree
+随机森林RandomForest
+4.高级
+递归特征消除 Recursive feature elimination (RFE)
+5 folder cross validation
+一二题都如此做
+
+feature selection 之后是否要进行 combine modelling？
+再跑个很高的综合模型出来
+好像就是RFE
+
+## cy
 1.18日结果：
  - 对17日的结果中top16的位点联合训练（48维）LR的acc是0.707，
  - 尝试每次去掉一个留15个，求acc，降到0.68左右，有几个没下降，说明综合时没啥用
