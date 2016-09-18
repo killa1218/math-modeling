@@ -4,7 +4,7 @@ APEX Math Modeling Competetion
 ## cy
  - 直接全数据train不好评测是否过拟合，所以建议直接5 folder cross validation
  - 考虑10个症状每个0.1表示严重程度
- - http://www.jianshu.com/p/45968f4d5f86
+ - http://www.17bigdata.com/%E7%BB%93%E5%90%88scikit-learn%E4%BB%8B%E7%BB%8D%E5%87%A0%E7%A7%8D%E5%B8%B8%E7%94%A8%E7%9A%84%E7%89%B9%E5%BE%81%E9%80%89%E6%8B%A9%E6%96%B9%E6%B3%95.html
 - 基于学习模型的特征排序：
 1.统计指标
 precision/accuracy/f1
