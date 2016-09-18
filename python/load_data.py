@@ -1,4 +1,5 @@
 import numpy as np
+from utility import *
 
 class DataLoader():
 	def __init__(self, folder='../data/'):
@@ -27,6 +28,15 @@ class DataLoader():
 				gene_info.append(infile.read().split())
 		return gene_info
 
+	def load_one_hot(self):
+		one_hot = []
+		with open(self._folder + "full_one_hot.dat") as fin:
+			for line in fin:
+				line = line.split()
+				line = str_list2float_list(line)
+				one_hot.append(line)
+		return one_hot
+
 if __name__=='__main__':
 	print 'Testing DataLoader...'
 	data_loader = DataLoader()
@@ -43,3 +53,5 @@ if __name__=='__main__':
 
 	gene_info = data_loader.load_gene_info()
 	print 'gene_info:\n', '\tshape:', len(gene_info), 'sample:', gene_info[0]
+	
+	one_hot = data_loader.load_one_hot()
