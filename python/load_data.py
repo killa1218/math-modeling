@@ -1,12 +1,12 @@
 import numpy as np
 
 class DataLoader():
-	def __init__(self, folder='data/'):
+	def __init__(self, folder='../data/'):
 		self._folder = folder
 		print 'Init DataLoader Done.'
 
 	def load_genotype(self):
-		with open('data/genotype.dat', 'r') as infile:
+		with open(self._folder + 'genotype.dat', 'r') as infile:
 			lines = infile.readlines()
 		genotype = lines[0].split()
 		genotable = []
