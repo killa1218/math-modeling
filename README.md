@@ -1,6 +1,62 @@
 # math-modeling
 APEX Math Modeling Competetion
 
+论文
+--------
+0.abstract
+-----
+1.introduction/background
+---
+2.具体题目介绍/数据格式
+----
+3.solutions
+
+3.1问题1：编码：
+ 1.ATCG符号编码很好，但是不能计算
+ 2.数值编码不适合,如果把A编成1，B编成2，那么AB之间就存在2倍关系，这是不正确的
+ 3.经典的onehot（多经典）编码，能方便model出每个位点的碱基对的影响力
+
+3.2问题2：位点
+3.3问题3：基因
+因为0/1的label所以尝试用分类模型来建模
+from sklearn.linear_model import LogisticRegression
+1.1.10
+from sklearn.svm import SVC, LinearSVC
+1.4.1
+from sklearn.tree import DecisionTreeClassifier
+1.10.1
+from sklearn.ensemble import RandomForestClassifier，, GradientBoostingClassifier
+1.11.2/1.11.4
+（简单介绍一下各模型（参考sklearn官网及baidu））
+http://scikit-learn.org/stable/supervised_learning.html#supervised-learning
+http://www.cnblogs.com/wentingtu/archive/2011/12/22/2297405.html
+首先对全数据进行了测试，很烂，所以预过滤很重要
+所以用分类能力的好坏来筛除大部分，保留最高的，然后用RFE进一步筛选。
+（吹一下RFE）
+最终模型及结果及涉及的位点&基因
+
+3.4问题4：多症状
+根据统计结果（）
+，尝试用每个症状0.1，××××，然后代表该遗传病的严重程度 0-1
+因为0-1的数值label所以可以用回归模型建模
+from sklearn.linear_model import LinearRegression, Ridge, Lasso
+1.1.1/1.1.2/1.1.3
+from sklearn.svm import SVR, LinearSVR
+1.4.2
+from sklearn.tree import  DecisionTreeRegressor
+1.10.2
+from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor
+1.11.2/1.11.4
+分别对基因和位点测试，过滤，RFE，得到最终结果
+RFE
+其他方法
+
+## cy
+ - 全数据的确很差
+ - 有必要先做一遍过滤
+ - 编码：1.ATCG符号编码很好，但是不能计算 2.数值编码不适合,如果把A编成1，B编成2，那么AB之间就存在2倍关系，这是不正确的 3.经典的onehot编码，能方便model出每个位点的碱基对的影响力
+ - 
+
 ## cy
  - 直接全数据train不好评测是否过拟合，所以建议直接5 folder cross validation
  - 考虑10个症状每个0.1表示严重程度
